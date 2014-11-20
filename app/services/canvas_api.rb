@@ -1,16 +1,17 @@
 module CanvasAPI
 
   class Course
-    attr_accessor :conn, :token
+    attr_accessor :conn
+    attr_reader   :token, :user
 
     def initialize (user='')
       @user  = user
+      @token = get_auth_token
     end
 
 
-
-    def get
-      parse_request (api_conn.get '/api/v1/courses')
+    def get_courses(page, per_page=2)
+      parse_request (api_conn.get '/api/v1/courses', {:access_token => @token, :page=> page, :per_page => per_page})
     end
 
 
@@ -21,10 +22,10 @@ module CanvasAPI
 
 
 
-    private
     def api_conn(site = 'http://canvas-api.herokuapp.com' )
       @conn ||= Faraday.new(site)
     end
+
 
     def parse_request(response)
       {
@@ -37,4 +38,5 @@ module CanvasAPI
 
 
   end
+
 end
