@@ -12,20 +12,20 @@ class CoursePaginator
     list.length
   end
 
-  def next
-    link_to courses_path
 
-  end
 
   def previous_page
-    if @page_number > 1
-      return "/courses?page=#{@page_number-1}"
-    end
-    ""
+    @page_number - 1
+  end
+
+  def course(int)
+
   end
 
   def next_page
-    "/course?page=#{@page_number+1}"
+    if length == 2
+      @page_number+1
+    end
   end
 
   def list
