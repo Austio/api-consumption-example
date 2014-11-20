@@ -48,3 +48,4 @@ CoursePaginator is a PORO that takes care of the logic of paginating results for
 
 Style is bootstrap Jumbotron theme
 
+Devise manages authentication, I chose to force a user login into the system in order to view and enroll in courses.
