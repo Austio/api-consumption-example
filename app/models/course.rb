@@ -7,12 +7,12 @@ class Course
 
   #deletes all attributes to the body, i.e. :code, description, etc
   def method_missing(m)
-    course[m.to_s] || 'Not available'
+    body[m.to_s] || 'Not available'
   end
 
   private
 
-  def course
+  def body
     @response["body"] || []
   end
 
