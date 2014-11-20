@@ -1,7 +1,9 @@
 module CoursesHelper
 
   def paginate_course_link_to (course)
-    'lkjaskfjlkajsdlkjfasdf'
+    if course
+      link_to course.name, course_path(course.id)
+    end
   end
 
   def previous_course_page_link (page_id)
