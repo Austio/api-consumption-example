@@ -1,2 +1,4 @@
 <%= @courses.length %>
-<%= @courses.previous %>
+<%= link_to 'Previous', @courses.previous_page %>
+<%= link_to 'Next', @courses.next_page %>
+

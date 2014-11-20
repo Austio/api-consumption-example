@@ -1,4 +1,6 @@
 class CoursePaginator
+  include ActionView::Helpers
+
   attr_reader :response
 
   def initialize (user, page_number)
@@ -11,13 +13,19 @@ class CoursePaginator
   end
 
   def next
+    link_to courses_path
 
   end
 
-  def previous
+  def previous_page
     if @page_number > 1
-      "/courses?page=#{@page_number}"
+      return "/courses?page=#{@page_number-1}"
     end
+    ""
+  end
+
+  def next_page
+    "/course?page=#{@page_number+1}"
   end
 
   def list
