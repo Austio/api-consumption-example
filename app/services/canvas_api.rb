@@ -1,9 +1,10 @@
 module CanvasAPI
 
   class Course
-    attr_accessor :conn
+    attr_accessor :conn, :token
+
     def initialize (user='')
-      @user = user
+      @user  = user
     end
 
 
@@ -13,9 +14,11 @@ module CanvasAPI
     end
 
 
-    def auth_token
-      parse_request (api_conn.post '/api/v1/tokens')
+    def get_auth_token
+      request = parse_request(api_conn.post '/api/v1/tokens')
+      request["body"]["token"]
     end
+
 
 
     private
@@ -25,15 +28,13 @@ module CanvasAPI
 
     def parse_request(response)
       {
-        "status" => reponse.status,
-        "body"   => JSON.parse(response.body),
-        "header" => response.header
+        "status"  => response.status,
+        "body"    => JSON.parse(response.body),
+        "headers" => response.env.response_headers
       }
     end
 
 
+
   end
-
-
-
 end
