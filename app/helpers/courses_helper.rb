@@ -18,11 +18,11 @@ module CoursesHelper
     end
   end
 
-  def link_to_enroll(course_id)
-    if current_user.enrollments.pluck(:course_id).any?
+  def link_to_enroll(course)
+    if CourseEnroller.new(current_user, course).is_enrolled?
       "Already Enrolled!"
     else
-      link_to "Click to Enroll", '/'
+      link_to "Click to Enroll", enrollments_path(course_id: course.id), method: :post
     end
   end
 

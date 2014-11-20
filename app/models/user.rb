@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
     auth_tokens.last.token
   end
 
+  def enrolled_in?(course_id)
+    enrollments.pluck(:course_id).include? course_id
+  end
 
   private
 
