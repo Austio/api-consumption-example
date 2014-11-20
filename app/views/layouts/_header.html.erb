@@ -1,6 +1,7 @@
 <ul class="nav nav-pills pull-right">
   <% if user_signed_in? %>
 
+    <li><%= link_to 'Enrollments', enrollments_path %></li>
     <li><%= link_to 'Courses', courses_path %></li>
     <li class="active">
       <%= link_to 'Sign Out', '/users/sign_out', method: :delete %>

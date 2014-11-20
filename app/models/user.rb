@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :auth_tokens
+  has_many :enrollments
 
   after_create :set_canvas_api_token
 

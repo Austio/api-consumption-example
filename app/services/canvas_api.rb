@@ -16,11 +16,13 @@ module CanvasAPI
     def get_course(course_id)
       parse_request (api_conn.get "/api/v1/courses/#{course_id}", {:access_token => @token})
     end
-    #
-    # def enroll(course_id)
-    #   data = {:access_token => @token, :type => 'student', :user => {:name => 'Johnny'} }
-    #   parse_request (api_conn.post "/api/v1/courses/#{course_id}/enrollments", data)
-    # end
+
+    def enroll(course_id)
+      api_conn.headers['Authorization'] = "Token #{@token}"
+      data = {:type => 'student', :user => {:name => 'Johnny'} }.to_json
+      parse_request (api_conn.post "/api/v1/courses/#{course_id}/enrollments", data)
+    end
+
 
     def api_conn
       @conn ||= CanvasAPI::Connection.establish

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120132548) do
+ActiveRecord::Schema.define(version: 20141120170303) do
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20141120132548) do
 
   add_index "auth_tokens", ["user_id", "token"], name: "index_auth_tokens_on_user_id_and_token"
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
+
+  create_table "enrollments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.text     "serialized_course"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "enrollments", ["user_id", "course_id"], name: "index_enrollments_on_user_id_and_course_id"
+  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

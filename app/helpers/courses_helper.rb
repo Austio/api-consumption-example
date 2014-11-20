@@ -18,6 +18,14 @@ module CoursesHelper
     end
   end
 
+  def link_to_enroll(course_id)
+    if current_user.enrollments.pluck(:course_id).any?
+      "Already Enrolled!"
+    else
+      link_to "Click to Enroll", '/'
+    end
+  end
+
   def next_course_page_link (page_id)
     if page_id
       link_to "Next >", courses_path(:page => page_id)

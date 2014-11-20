@@ -1,5 +1,7 @@
-<%= link_back_courses (@course) %>
+<%= link_back_courses (@course) %>  |
+<%= link_to_enroll(@course.id) %>
 
 <h2>Course: <%= @course.name %> </h2>
 <p>Code: <%= @course.code %> </p>
 <p>Description: <%= @course.description %> </p>
+
