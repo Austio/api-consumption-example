@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141120170303) do
   create_table "enrollments", force: true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.text     "serialized_course"
+    t.string   "course_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

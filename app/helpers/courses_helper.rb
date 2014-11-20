@@ -2,7 +2,7 @@ module CoursesHelper
 
   def link_back_courses (course)
     if course
-      link_to "Back", courses_path(:page => course.paginated_number)
+      link_to "Back to Courses", courses_path(:page => course.paginated_number)
     end
   end
 
