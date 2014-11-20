@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.new(current_user, params[:id]).show
+    @course = Course.new(current_user, params[:id])
   end
 
 
