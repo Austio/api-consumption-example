@@ -50,7 +50,7 @@ module CanvasAPI
       {
           "status"  => response.status,
           "body"    => JSON.parse(response.body),
-          "headers" => response.env.response_headers
+          "headers" => response.env.try(:response_headers)
       }
     end
   end

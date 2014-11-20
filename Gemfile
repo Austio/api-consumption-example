@@ -40,7 +40,10 @@ gem 'spring',        group: :development
 
 gem 'faraday'
 
-gem 'minitest'
-gem 'mocha'
+gem 'minitest', group: :test
+gem 'mocha', group: :test
 
 gem 'devise'
+
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
