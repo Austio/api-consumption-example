@@ -1,23 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
 
 2.1.2
 
-* System dependencies
-
 * Configuration
 
-* Database creation
+This is a standard rails app using rails 4.  To start run rake db:setup and then create an account
 
-* Database initialization
+* General Setup
 
-* How to run the test suite
+There are several models
+  User - ActiveRecord model, a user managed with devise
+  Course - A stuct used to hold the information that is received from the CanvasAPI
+  Enrollment - ActiveRecord model, join table between user and course that hold the course name on creation to reduce API calls
+
 
 * Services (job queues, cache servers, search engines, etc.)
 
@@ -39,10 +36,10 @@ CanvasAPI is a module located in app/services.  It is responsible for connecting
       "headers" : JSON object of the response headers
     }
 
-* Deployment instructions
 
-* ...
+CourseEnroller is a PORO used to determine if a user is enrolled in a course and also to enroll them in a course
 
+CourseFactory is a factory that generates a course from an API call to Canvas using the above service object
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+CoursePaginator is a PORO that takes care of the logic of paginating results for a user
+  In this, i reduce API calls by not checking if the next page will have results but failing gracefully by displaying nothing.  This would be a product discusssion but it will really reduce API Calls.
