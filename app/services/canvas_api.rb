@@ -9,12 +9,12 @@ module CanvasAPI
 
 
     def get
-      api_conn.get '/api/v1/courses'
+      parse_request (api_conn.get '/api/v1/courses')
     end
 
 
     def auth_token
-      api_conn.post '/api/v1/tokens'
+      parse_request (api_conn.post '/api/v1/tokens')
     end
 
 
@@ -23,10 +23,10 @@ module CanvasAPI
       @conn ||= Faraday.new(site)
     end
 
-    def json_parse(response)
+    def parse_request(response)
       {
-        "status" => reponse.status
-        "body"   => JSON.parse(response.body)
+        "status" => reponse.status,
+        "body"   => JSON.parse(response.body),
         "header" => response.header
       }
     end
