@@ -9,11 +9,18 @@ module CanvasAPI
       @token = get_auth_token
     end
 
-
     def get_courses(page, per_page=2)
       parse_request (api_conn.get '/api/v1/courses', {:access_token => @token, :page=> page, :per_page => per_page})
     end
 
+    def get_course(course_id)
+      parse_request (api_conn.get "/api/v1/courses/#{course_id}", {:access_token => @token})
+    end
+    #
+    # def enroll(course_id)
+    #   data = {:access_token => @token, :type => 'student', :user => {:name => 'Johnny'} }
+    #   parse_request (api_conn.post "/api/v1/courses/#{course_id}/enrollments", data)
+    # end
 
     def get_auth_token
       request = parse_request(api_conn.post '/api/v1/tokens')
