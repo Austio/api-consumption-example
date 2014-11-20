@@ -1,7 +1,7 @@
 class Course
 
   def initialize(user, course_id)
-    @request = CanvasAPI::Course.new(user).get_course(course_id)
+    @response = CanvasAPI::Course.new(user).get_course(course_id)
   end
 
 
@@ -13,7 +13,7 @@ class Course
   private
 
   def course
-    @request["body"]
+    @response["body"] || []
   end
 
 end
