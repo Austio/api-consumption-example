@@ -1,3 +1,5 @@
-Name: <%= @course.name %> </br>
-Code: <%= @course.code %> </br>
-Description: <%= @course.description %> </br>
+<%= link_back_courses (@course) %>
+
+<h2>Course: <%= @course.name %> </h2>
+<p>Code: <%= @course.code %> </p>
+<p>Description: <%= @course.description %> </p>

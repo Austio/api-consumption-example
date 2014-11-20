@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
 
-<%= yield %>
+  <div class="header">
+    <%= render 'layouts/header' %>
+  </div>
+  <div class="jumbotron">
+    <%= yield %>
+  </div>
+
+</div>
 
 </body>
 </html>
