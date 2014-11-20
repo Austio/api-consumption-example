@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = CourseRetriever.new(current_user, params[:id])
+    @course = CourseFactory.new(current_user, params[:id]).course
   end
 
 end
