@@ -20,7 +20,7 @@ module CoursesHelper
 
   def link_to_enroll(course)
     if CourseEnroller.new(current_user, course).is_enrolled?
-      "Already Enrolled!"
+      "Enrolled!"
     else
       link_to "Click to Enroll", enrollments_path(course_id: course.id), method: :post
     end

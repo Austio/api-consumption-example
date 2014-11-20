@@ -43,3 +43,8 @@ CourseFactory is a factory that generates a course from an API call to Canvas us
 
 CoursePaginator is a PORO that takes care of the logic of paginating results for a user
   In this, i reduce API calls by not checking if the next page will have results but failing gracefully by displaying nothing.  This would be a product discusssion but it will really reduce API Calls.
+
+* Other
+
+Style is bootstrap Jumbotron theme
+
