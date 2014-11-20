@@ -35,15 +35,25 @@ module CanvasAPI
 
 
     def parse_request(response)
-      {
-        "status"  => response.status,
-        "body"    => JSON.parse(response.body),
-        "headers" => response.env.response_headers
-      }
+      CanvasAPI::Parsed.request(response)
     end
-
 
 
   end
 
+  class Request
+    def self.auth_token
+
+    end
+  end
+
+  class Parsed
+    def self.request(response)
+      {
+          "status"  => response.status,
+          "body"    => JSON.parse(response.body),
+          "headers" => response.env.response_headers
+      }
+    end
+  end
 end

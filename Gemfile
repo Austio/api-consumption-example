@@ -42,3 +42,5 @@ gem 'faraday'
 
 gem 'minitest'
 gem 'mocha'
+
+gem 'devise'
