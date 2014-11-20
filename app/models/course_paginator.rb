@@ -10,6 +10,9 @@ class CoursePaginator
     list.length
   end
 
+  def next
+
+  end
 
   def previous
     if @page_number > 1
