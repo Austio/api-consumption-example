@@ -6,7 +6,7 @@ module CanvasAPI
 
     def initialize (user='')
       @user  = user
-      @token = get_auth_token
+      @token = user.auth_token
     end
 
     def get_courses(page, per_page=2)
@@ -22,28 +22,26 @@ module CanvasAPI
     #   parse_request (api_conn.post "/api/v1/courses/#{course_id}/enrollments", data)
     # end
 
-    def get_auth_token
-      request = parse_request(api_conn.post '/api/v1/tokens')
-      request["body"]["token"]
-    end
-
-
-
-    def api_conn(site = 'http://canvas-api.herokuapp.com' )
-      @conn ||= Faraday.new(site)
+    def api_conn
+      @conn ||= CanvasAPI::Connection.establish
     end
 
 
     def parse_request(response)
       CanvasAPI::Parsed.request(response)
     end
+  end
 
-
+  class Connection
+    def self.establish(site='http://canvas-api.herokuapp.com')
+      Faraday.new(site)
+    end
   end
 
   class Request
     def self.auth_token
-
+      request = CanvasAPI::Parsed.request(CanvasAPI::Connection.establish.post '/api/v1/tokens')
+      request["body"]["token"]
     end
   end
 

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141120132548) do
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id"
     t.string   "token"
-    t.boolean  "valid"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

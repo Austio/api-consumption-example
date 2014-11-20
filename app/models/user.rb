@@ -9,9 +9,14 @@ class User < ActiveRecord::Base
   after_create :set_canvas_api_token
 
 
+  def auth_token
+    auth_tokens.last.token
+  end
+
+
   private
 
   def set_canvas_api_token
-
+    auth_tokens.create(token: CanvasAPI::Request.auth_token, active: true)
   end
 end

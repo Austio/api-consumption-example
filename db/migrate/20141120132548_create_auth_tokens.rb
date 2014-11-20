@@ -3,7 +3,7 @@ class CreateAuthTokens < ActiveRecord::Migration
     create_table :auth_tokens do |t|
       t.integer :user_id
       t.string  :token
-      t.boolean :valid
+      t.boolean :active
 
       t.timestamps
     end
