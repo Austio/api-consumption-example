@@ -2,7 +2,7 @@
 
 * App
 
-This is a standard rails app using rails 4 that demonstrates how to setup a skelton application to consume an API and keep subscriptions betweent he two.
+This is a standard rails app using rails 4 that demonstrates how to setup a skeleton application to consume an API and keep subscriptions betweent he two.
 
 * Ruby version
 
