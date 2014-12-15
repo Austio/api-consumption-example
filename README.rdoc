@@ -1,12 +1,16 @@
 == README
 
+* App
+
+This is a standard rails app using rails 4 that demonstrates how to setup a skelton application to consume an API and keep subscriptions betweent he two.
+
 * Ruby version
 
 2.1.2
 
 * Configuration
 
-This is a standard rails app using rails 4.  To start run rake db:setup and then create an account
+To start run rake db:setup and then create an account
 
 * General Setup
 
@@ -51,8 +55,8 @@ Style is bootstrap Jumbotron theme
 Devise manages authentication, I chose to force a user login into the system in order to view and enroll in courses.
 
 * API Server
+
 Courses API Documentation
-This page documents how to use the Courses API to query available courses and create new enrollments.
 
 Authentication
 The Courses API uses a token-based authentication system. Tokens are reusable, and can be passed in either in an access_token GET parameter or via the Authentication header. See the examples below:
