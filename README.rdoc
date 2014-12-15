@@ -20,7 +20,7 @@ There are several models
 
 CanvasAPI is a module located in app/services.  It is responsible for connecting to and parsing the canvas API.  It is composed of several classes
 
-  Connection - establishes the connection with the canvas-api, site is optional and defaults to the heroku app
+  Connection - establishes the connection with the courses-api, site is optional and defaults to the heroku app
     CanvasAPI::Connection.establish(site)
 
   Request - used for requesting API tokens
@@ -49,3 +49,97 @@ CoursePaginator is a PORO that takes care of the logic of paginating results for
 Style is bootstrap Jumbotron theme
 
 Devise manages authentication, I chose to force a user login into the system in order to view and enroll in courses.
+
+* API Server
+Courses API Documentation
+This page documents how to use the Courses API to query available courses and create new enrollments.
+
+Authentication
+The Courses API uses a token-based authentication system. Tokens are reusable, and can be passed in either in an access_token GET parameter or via the Authentication header. See the examples below:
+
+With an access token parameter:
+
+curl http://courses-api.herokuapp.com?access_token=12345
+With an Authorization header:
+
+curl http://courses-api.herokuapp.com -H 'Authorization: Token 12345'
+POST /api/v1/tokens
+Returns a reusable authentication token.
+
+Examples
+
+curl http://courses-api.herokuapp.com/api/v1/tokens -XPOST
+Response:
+{"token": "12345"}
+Courses
+Courses are returned in list and single formats, and are paginated using the Link header. Pagination can be controlled using page and per_page GET parameters.
+
+GET /api/v1/courses
+Returns a paginated list of courses.
+
+Examples
+
+curl http://courses-api.herokuapp.com/api/v1/courses -H 'Authorization: Token 12345'
+Response:
+
+Content-Type: application/json
+ETag: f0bf04fbc861e0b814cf74fc93d72c1e
+Link: <http://courses-api.herokuapp.com/api/v1/courses?page=1&per_page=2>; rel="first", <http://courses-api.herokuapp.com/api/v1/courses?page=2&per_page=2> rel="next", <http://courses-api.herokuapp.com/api/v1/courses?page=4&per_page=2>; rel="last"
+
+[
+  {
+    "json_class":"Course",
+    "id":1,
+    "name":"Intro to Literary Theory",
+    "code":"ENGL 2100",
+    "description":"An introduction to literary theory, including structuralist, formalist, and historical approaches.",
+    "start_at":"2012-09-28 15:58:58 +0000",
+    "end_at":null,
+    "created_at":"2012-11-14 19:25:38 +0000",
+    "updated_at":null
+  },
+  {
+    ...
+  }
+]
+
+GET /api/v1/courses/:id
+Returns a single course object.
+
+Examples
+
+curl http://courses-api.herokuapp.com/api/v1/courses/1 -H 'Authorization: Token 12345'
+Response:
+
+Content-Type: application/json
+ETag: f0bf04fbc861e0b814cf74fc93d72c1e
+
+{
+  "json_class":"Course",
+  "id":1,
+  "name":"Intro to Literary Theory",
+  "code":"ENGL 2100",
+  "description":"An introduction to literary theory, including structuralist, formalist, and historical approaches.",
+  "start_at":"2012-09-28 15:58:58 +0000",
+  "end_at":null,
+  "created_at":"2012-11-14 19:25:38 +0000",
+  "updated_at":null
+}
+
+Enrollments
+Enrollments can be created in existing courses by posting a JSON object.
+
+POST /api/v1/courses/:id/enrollments
+Create an enrollment in an existing course.
+
+Examples
+
+curl http://courses-api.herokuapp.com/api/v1/courses/1/enrollments -H 'Authorization: Token 12345' -d '{"type": "student", "user": {"name": "Test User"}}'
+Response:
+
+{
+  "type": "student",
+  "user": {
+    "name": "Test User"
+  }
+}

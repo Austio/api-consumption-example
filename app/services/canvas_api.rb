@@ -23,11 +23,9 @@ module CanvasAPI
       parse_request (api_conn.post "/api/v1/courses/#{course_id}/enrollments", data)
     end
 
-
     def api_conn
       @conn ||= CanvasAPI::Connection.establish
     end
-
 
     def parse_request(response)
       CanvasAPI::Parsed.request(response)
